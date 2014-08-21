@@ -1,0 +1,8 @@
+<div class="container-fluid text-center">
+<h2>#<%= @tag.name %></h2>
+<% @tag.posts.each do |post| %>
+<h3><%= post.name %></h3><br>
+<p><%= post.author %></p>
+<p><%= post.description %></p>
+<% end %>
+</div>

@@ -14,20 +14,40 @@ class PostsController < ApplicationController
 
 	def create
 		post = params[:post].permit(:name, :author, :description)
-		Post.create(post)
+		create_post = Post.create(post)
 
-		# tag = params[:tag].permit(:name)
-		# create_tag = Tag.create(tag)
-		# find_or_create
-		# create_post.tags << create_tag
+		tag = params[:tag].permit(:name)
+		create_tag = Tag.find_or_create_by(name: tag[:name])
+		
+		create_post.tags << create_tag
 
-		redirect_to "/show"
+		redirect_to "/index"
 	end
 
 	def update
+		tag = params[:tag].permit(:name)
+		id = params[:id]
 
+		found_post = Post.find(id)
+		
+		create_tag = Tag.find_or_create_by(name: tag[:name])
+		
+		puts create_tag
+
+		post = params[:post].permit(:name, :author, :description)
+		update_post = found_post.update_attributes(post)
+
+		found_post.tags << create_tag
+		
+
+
+		redirect_to "/index"
 	end
 
 	def destroy
+		id = params[:id]
+		Post.find(id).destroy
+
+		redirect_to "/index"
 	end
 end

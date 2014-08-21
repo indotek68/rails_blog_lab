@@ -1,15 +1,30 @@
+<div class="container text-center">
+	<div>
+			<h2>Welcome to the Blog</h2>
+			<a href="/new">Click here to Create a new post</a><br>
+			<a href="/tags">Click here to see all #tags</a>
+	</div>
+
+
 <% @posts.each do |post| %>
 	<div>
-		<h2><%= post.name %></h2>
+		<h4><%= post.name %></h4>
 		<p><%= post.author %></p>
 		<p><%= post.description %></p>
+		<% post.tags.each do |tag| %>
+			<a href="tags/<%= tag.id%>"><span>#<%= tag.name %></span></a>
+		<% end %>
 	</div>
+	<div class="btn-group">
 		<form action="/show/<%=post.id%>" method="get">
-			<input type="hidden" value="<%=post.id%>">
-			<input type="submit" value="Update">
+			<input class="btn-primary btn-block" type="submit" value="Update">
 		</form>
-		<forn action="/destroy" method="post">
-			<input type="hidden" value="<%=post.id%>">
-			<input type="submit" value="Delete">
+
+		<form action="/destroy" method="post">
+			<input type="hidden" name="id" value="<%=post.id%>">
+			<input class="btn-danger btn-block" type="submit" value="Delete">
+			<%= token_tag form_authenticity_token %>
 		</form>
+	</div>
 	<% end %>
+</div>

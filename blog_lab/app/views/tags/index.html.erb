@@ -1,0 +1,6 @@
+<div class="container-fluid text-center">
+	<h2>#tags page</h2>
+	<% @tags.each do |tag| %>
+<p><a href="/tags/<%= tag.id %>">#<%= tag.name %></p></a>
+<% end %>
+</div>
