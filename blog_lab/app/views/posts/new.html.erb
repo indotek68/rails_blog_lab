@@ -1,0 +1,15 @@
+<h2>Create New Blog Post!</h2>
+
+<form method="post" action="/create">
+	<input type="text" placeholder="Blog Name" name="post[name]">	
+	<br>
+	<input type="text" placeholder="Blog Author" name="post[author]">	
+	<br>
+	<textarea cols="30" rows="10" type="text" placeholder="Blog Description" name="post[description]"></textarea>
+	<br>
+	<!-- <input type="text" placeholder="Tag" name="tag[name]">	 -->
+
+	<%= token_tag form_authenticity_token %>
+	
+	<input type="submit" value="Post Blog">
+</form>
