@@ -1,16 +1,15 @@
-<div>
+<div class="row">
 	<h2><%=@find_post.name %></h2>
 	<p><%=@find_post.author%></p>
 	<p><%=@find_post.description %></p>
+	<a href="comments/new">Click here to post new comments</a>
+	<div>
+		<ul>
+				<% @comments.each do |comment|%>
+				<a href="comments/<%= comment.id %>"><h4><%= comment.name %></h4>
+				<span>By: <%= comment.author%></span>
+				</a>
+				<% end%>
+		</ul>
+	</div>
 </div>
-<ul>
-	<li>
-			<% @comments.each do |comment|%>
-		<div>
-			<a href="comments/<%= comment.id %>"><h4><%= comment.name %></h4>
-			<span>By: <%= comment.author%></span>
-			</a>
-		</div>
-	<% end%>
-	</li>
-</ul>

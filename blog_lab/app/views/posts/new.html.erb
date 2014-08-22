@@ -1,19 +1,14 @@
-<div class="container text-center">
-	<h2>Create New Blog Post!</h2>
-
-	<form method="post" action="/posts">
-		<input type="text" placeholder="Blog Name" name="post[name]">	
-		<br>
-		<input type="text" placeholder="Blog Author" name="post[author]">	
-		<br>
-		<textarea cols="30" rows="10" type="text" placeholder="Blog Description" name="post[description]"></textarea><br>
-		<input type="text" placeholder="Tag" name="tag[name]">	
-		<br>
-		<br>
-		<!-- <input type="text" placeholder="Tag" name="tag[name]">	 -->
-
-		<%= token_tag form_authenticity_token %>
-
-		<input type="submit" value="Post Blog">
-	</form>
+<div class="row text-center">
+	<div class="col-xs-4 col-xs-offset-4">
+	<h3>Create New Blog Post!</h3>
+			<%= form_for [@post] do |f| %>
+			<%= f.text_field :name, placeholder:"Title", class: "form-control" %>
+			<%= f.text_field :author, placeholder:"Your Name", class: "form-control" %>
+			<%= f.text_area :description, placeholder:"Description",  class: "form-control" %>
+			<%=fields_for :tag, @post.tags do |tag_fields| %>
+				<%=tag_fields.text_field :name, placeholder:"Tag", class:"form-control"%>
+				<% end %>
+			<%= f.submit "Submit Blog", class:"btn btn-success" %>
+			<% end %>
+	</div>
 </div>

@@ -1,9 +1,11 @@
-<% @comments.each do |comment|%>
-		<div>
-			<h4><%= comment.name %></h4>
-			<p>By: </p>
-			<p><%= comment.author%></p>
-			<p>Description:</p>
-			<p><%= comment.body %></p>
-		</div>
-	<% end%>
+<div class="row text-center">
+	<div class="col-xs-4 col-xs-offset-4">
+		<h4><%= @comment.name %></h4>
+		<p>By: <<%= @comment.author%></p>
+		<p>Description: <%= @comment.body %></p>
+				<p><%=link_to "Click here to update comments", edit_post_comment_path %></p>
+				<p><%=link_to "Previous page", post_comments_path %></p>
+				<%= button_to "Delete Comments", post_comment_path(@find_post, @comment), method: :delete, class: "btn btn-danger"%> 
+	</div>
+</div>
+

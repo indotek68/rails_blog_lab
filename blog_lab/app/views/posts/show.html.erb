@@ -1,13 +1,22 @@
-<div class="container btn-group text-center">
-	<h2>Blog Update</h2>
-	<form action="/update" method="post">
-		<input type="text" name="post[name]" value="<%= @post.name %>"><br>
-		<input type="text" name="post[author]" value="<%= @post.author %>"><br>
-		<textarea cols="30" rows="10" type="text" value="<%= @post.description %>" name="post[description]"><%= @post.description %></textarea><br>
-		<input type="text" placeholder="tag" name="tag[name]"><br>
-		<input type="hidden" name="id" value="<%=@post.id%>">
-		<input class="btn-success" type="submit" value="Submit Changes">
+<div class="row">
+	<div class="text-center col-xs-offset-4 col-xs-4 textcenter">
+		<h4><%= @post.name %></h4>
+		<p>By:<%= @post.author%></p>
+		<p>Description:</p>
+		<p><%= @post.description %></p>		
+		<h4>Tags:</h4>
+		<% @post.tags.each do |tag| %>
+		<span>#<%= tag.name %></span>
+		<h4>Comments:</h4>
+		<a href="<%=@post.id%>/comments">Click Here to see comments page</a>
+		<% @post.comments.each do |comment| %>
+			<h5><strong><%= comment.name %></strong></h5>
+			<span>By: <%= comment.author %></span>
+		<% end %>
 
-		<%= token_tag form_authenticity_token %>
-	</form>
+		<p><a href="<%=@post.id%>/edit">Click here to Edit the Blog</a></p>
+		
+		<%= button_to "Delete Post", post_path(@post), method: :delete, class: "btn-danger" %>
+		<% end %>
+	</div>	
 </div>

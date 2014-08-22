@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="col-xs-offset-4 text-center col-xs-4 text-center">
+		<%= form_for [@find_post, @comment] do |f| %>
+			<%=f.label :name %>
+			<%= f.text_field :name, class: "form-control" %>
+			<%=f.label :author %>
+			<%=f.text_field :author, class: "form-control" %>
+			<%=f.label :body %>
+			<%=f.text_area :body, class: "form-control"%>
+			<%=button_to "Update Changes", post_comment_path, method: :patch, class: "btn btn-success" %>
+		<% end %>
+	</div>
+</div>
+

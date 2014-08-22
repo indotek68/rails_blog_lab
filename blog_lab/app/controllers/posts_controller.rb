@@ -5,9 +5,15 @@ class PostsController < ApplicationController
 	end
 
 	def new
+		@post = Post.new
 	end
 
 	def show
+		id = params[:id]
+		@post = Post.find(id)
+	end
+
+	def edit
 		id = params[:id]
 		@post = Post.find(id)
 	end
@@ -17,38 +23,34 @@ class PostsController < ApplicationController
 		create_post = Post.create(post)
 
 		tag = params[:tag].permit(:name)
-		tag = params[:tag].split(",").map()
+		# tag = params[:tag].split(",").map()
 
 		create_tag = Tag.find_or_create_by(name: tag[:name])
 		
 		create_post.tags << create_tag
 
-		redirect_to "/index"
+		redirect_to post
 	end
 
 	def update
-		tag = params[:tag].permit(:name)
+		# tag = params[:tag].permit(:name)
 		id = params[:id]
-
 		found_post = Post.find(id)
+		tag = params[:tag].permit(:name)
 		
 		create_tag = Tag.find_or_create_by(name: tag[:name])
-		
-		puts create_tag
-
 		post = params[:post].permit(:name, :author, :description)
 		update_post = found_post.update_attributes(post)
+		found_post.tags.clear
 
-		p "HELLLLLOOOO #{found_post.tags}"
 		found_post.tags << create_tag
-		
-		redirect_to "/index"
+		redirect_to post_path
 	end
 
 	def destroy
 		id = params[:id]
 		Post.find(id).destroy
 
-		redirect_to "/index"
+		redirect_to posts_path
 	end
 end
