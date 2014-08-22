@@ -1,0 +1,12 @@
+<div class="row">
+	<div class="col-xs-4">
+		<h3>Post Title: <%=@find_post.name %></h3>
+			<%= form_for [@find_post, @new_comment] do |f| %>
+			<%= f.text_field :name, placeholder:"Title", class: "form-control" %>
+			<%= f.text_field :author, placeholder:"Your Name", class: "form-control" %>
+			<%= f.text_area :body, placeholder:"Description",  class: "form-control" %>
+			<%= f.submit "Submit Comments", class:"btn btn-success" %>
+			<% end %>
+	</div>
+</div>
+

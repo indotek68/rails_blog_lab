@@ -1,0 +1,9 @@
+<% @comments.each do |comment|%>
+		<div>
+			<h4><%= comment.name %></h4>
+			<p>By: </p>
+			<p><%= comment.author%></p>
+			<p>Description:</p>
+			<p><%= comment.body %></p>
+		</div>
+	<% end%>

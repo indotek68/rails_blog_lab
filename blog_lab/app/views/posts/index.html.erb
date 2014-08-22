@@ -1,18 +1,18 @@
 <div class="container text-center">
 	<div>
 			<h2>Welcome to the Blog</h2>
-			<a href="/new">Click here to Create a new post</a><br>
-			<a href="/tags">Click here to see all #tags</a>
+			<a href="/posts/new">Click here to Create a new post</a><br>
 	</div>
 
 
 <% @posts.each do |post| %>
 	<div>
 		<h4><%= post.name %></h4>
-		<p><%= post.author %></p>
+		<p>By: <%= post.author %></p>
 		<p><%= post.description %></p>
 		<% post.tags.each do |tag| %>
-			<a href="tags/<%= tag.id%>"><span>#<%= tag.name %></span></a>
+		<span>#<%= tag.name %></span>
+			<!-- <a href="tags/<%= tag.id%>"><span>#<%= tag.name %></span></a> -->
 		<% end %>
 	</div>
 	<div class="btn-group">

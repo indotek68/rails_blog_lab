@@ -1,6 +1,8 @@
 class TagsController < ApplicationController
 	def index
-		@tags = Tag.all
+		@tags = Tag.all.select do |tag|
+			tag.posts.length > 0
+		end	
 		# render :index
 	end
 

@@ -17,6 +17,8 @@ class PostsController < ApplicationController
 		create_post = Post.create(post)
 
 		tag = params[:tag].permit(:name)
+		tag = params[:tag].split(",").map()
+
 		create_tag = Tag.find_or_create_by(name: tag[:name])
 		
 		create_post.tags << create_tag
@@ -37,10 +39,9 @@ class PostsController < ApplicationController
 		post = params[:post].permit(:name, :author, :description)
 		update_post = found_post.update_attributes(post)
 
+		p "HELLLLLOOOO #{found_post.tags}"
 		found_post.tags << create_tag
 		
-
-
 		redirect_to "/index"
 	end
 
